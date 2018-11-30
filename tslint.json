@@ -5,10 +5,11 @@
       "config/**/*.js",
       "node_modules/**/*.ts",
       "coverage/lcov-report/*.js"
-    ],
-    "rules": {
-      "ordered-imports": [false],
-      "object-literal-sort-keys": [false]
-    }
+    ]
+  },
+  "rules": {
+    "ordered-imports": [true],
+    "object-literal-sort-keys": [false],
+    "no-console": false
   }
 }

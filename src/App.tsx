@@ -1,9 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { style } from "typestyle";
+import { ChordBlockComponent } from "./components/chord-block.component";
 import { IBasePageProps } from "./models/base-page.props.model";
 import { IBasePageState } from "./models/base-page.state.model";
-import { Store } from "./models/store.model";
+import { IChordModel } from "./models/chord-props.model";
 
 class App extends React.Component<IBasePageProps, IBasePageState> {
   constructor(props: IBasePageProps) {
@@ -14,21 +15,27 @@ class App extends React.Component<IBasePageProps, IBasePageState> {
   }
 
   public render() {
-    const { text } = this.props;
-    const { baseText } = this.state;
+    const { text, chords } = this.props;
     return (
       <div className={generalStyle}>
-        {text ? text : "no data"} {baseText ? baseText : "no data"}
+        {text ? text : "no data"}
+        {chords.map((chord: IChordModel, index: number) => (
+          <ChordBlockComponent
+            key={index}
+            name={chord.name}
+            startString={chord.startString}
+            structure={chord.structure}
+          />
+        ))}
       </div>
     );
   }
 }
 const generalStyle = style({ color: "red" });
 
-const mapStateToProps = (store: Store) => {
-  return {
-    text: store.basePage ? store.basePage.text : ""
-  };
-};
+const mapStateToProps = (store: any) => ({
+  text: store.pageReducer.text,
+  chords: store.pageReducer.chords
+});
 
 export default connect(mapStateToProps)(App as any);

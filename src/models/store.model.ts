@@ -1,5 +1,5 @@
-export class Store {
-  public basePage?: {
-      text: string;
-  };
+import { IChordModel } from "./chord-props.model";
+export interface IStore {
+  text: string;
+  chords: IChordModel[];
 }
