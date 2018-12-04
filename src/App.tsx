@@ -21,6 +21,7 @@ class App extends React.Component<IBasePageProps, IBasePageState> {
         {text ? text : "no data"}
         {chords.map((chord: IChordModel, index: number) => (
           <ChordBlockComponent
+            id={chord.id}
             key={index}
             name={chord.name}
             startString={chord.startString}
