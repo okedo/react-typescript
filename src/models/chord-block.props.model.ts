@@ -1,6 +1,6 @@
 import { IChordStructure } from "./chord-structure.model";
 
-export interface IChordModel {
+export interface IChordPropsModel {
   id: string;
   name: string;
   startString: number;

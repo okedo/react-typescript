@@ -1,7 +1,6 @@
-export function modifyChord(key: number, key2: number) {
+export function modifyChord() {
   return {
     type: "MODIFY_CHORD",
-    payload: key,
-    key2
+    payload: ""
   };
 }

@@ -1,5 +1,5 @@
-import { IChordModel } from "./chord-props.model";
+import { IChordPropsModel } from "./chord-block.props.model";
 export interface IStore {
   text: string;
-  chords: IChordModel[];
+  chords: IChordPropsModel[];
 }

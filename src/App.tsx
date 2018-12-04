@@ -4,7 +4,7 @@ import { style } from "typestyle";
 import { ChordBlockComponent } from "./components/chord-block.component";
 import { IBasePageProps } from "./models/base-page.props.model";
 import { IBasePageState } from "./models/base-page.state.model";
-import { IChordModel } from "./models/chord-props.model";
+import { IChordPropsModel } from "./models/chord-block.props.model";
 
 class App extends React.Component<IBasePageProps, IBasePageState> {
   constructor(props: IBasePageProps) {
@@ -19,7 +19,7 @@ class App extends React.Component<IBasePageProps, IBasePageState> {
     return (
       <div className={generalStyle}>
         {text ? text : "no data"}
-        {chords.map((chord: IChordModel, index: number) => (
+        {chords.map((chord: IChordPropsModel, index: number) => (
           <ChordBlockComponent
             id={chord.id}
             key={index}

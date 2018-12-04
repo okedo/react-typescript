@@ -1,26 +1,28 @@
 import * as React from "react";
 import { style } from "typestyle";
-import { IChordModel } from "./../models/chord-props.model";
+import { IChordPropsModel } from "../models/chord-block.props.model";
+import { IChordStateModel } from "../models/chord-block.state.model";
 
 export class ChordBlockComponent extends React.Component<
-  IChordModel,
-  {
-    canvas?: HTMLCanvasElement;
-    ctx?: CanvasRenderingContext2D;
-    maxRow: number;
-    minRow: number;
-    canvasWidth: number;
-    canvasHeight: number;
-  }
+  IChordPropsModel,
+  IChordStateModel
 > {
-  private rowNumber = style({
-    width: "100%"
+  private accordDescription = style({
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between"
+  });
+  private descriptionElement = style({
+    padding: "0 13px"
   });
   private mainContainer = style({
-    width: "100%"
+    width: "auto",
+    display: "inline-block",
+    margin: "20px",
+    color: "black"
   });
 
-  public constructor(props: IChordModel) {
+  public constructor(props: IChordPropsModel) {
     super(props);
     this.state = {
       canvasWidth: 390,
@@ -44,9 +46,11 @@ export class ChordBlockComponent extends React.Component<
     return (
       <div>
         <div className={this.mainContainer}>
-          <div>{name}</div>
-          <div className={this.rowNumber}>
-            {this.state.minRow ? this.state.minRow : 1}
+          <div className={this.accordDescription}>
+            <div className={this.descriptionElement}>{name}</div>
+            <div className={this.descriptionElement}>
+              {this.state.minRow ? this.state.minRow : 1}
+            </div>
           </div>
           <canvas
             id={this.props.id}
@@ -54,7 +58,6 @@ export class ChordBlockComponent extends React.Component<
             height={this.state.canvasHeight}
           />
         </div>
-        <div />
       </div>
     );
   }
