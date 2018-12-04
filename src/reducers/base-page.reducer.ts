@@ -4,20 +4,35 @@ const initialState: IStore = {
   text: "some text",
   chords: [
     {
-      id: "1",
-      name: "AM",
-      startString: 1,
-      structure: {
-        strings: {
-          sixthString: [],
-          fifthString: [],
-          fourthString: [],
-          thirdString: [3],
-          secondStrind: [4],
-          firstString: [2]
+        id: "2",
+        name: "C",
+        startString: 1,
+        structure: {
+          strings: {
+            sixthString: [],
+            fifthString: [3],
+            fourthString: [2],
+            thirdString: [],
+            secondStrind: [1],
+            firstString: []
+          }
         }
-      }
-    }
+      },
+      {
+        id: "1",
+        name: "AM",
+        startString: 1,
+        structure: {
+          strings: {
+            sixthString: [],
+            fifthString: [],
+            fourthString: [2],
+            thirdString: [3],
+            secondStrind: [1],
+            firstString: []
+          }
+        }
+      },
   ]
 };
 
