@@ -1,5 +1,5 @@
 import * as React from "react";
-import { style } from "typestyle";
+import { classes, style } from "typestyle";
 import { IChordPropsModel } from "../models/chord-block.props.model";
 import { IChordStateModel } from "../models/chord-block.state.model";
 
@@ -8,18 +8,30 @@ export class ChordBlockComponent extends React.Component<
   IChordStateModel
 > {
   private accordDescription = style({
-    width: "100%",
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    border: "solid black 1px",
+    borderBottom: "none",
+    fontSize: "14px"
   });
   private descriptionElement = style({
-    padding: "0 13px"
+    width: "50%",
+    paddingTop: "2px",
+    paddingLeft: "5px"
+  });
+  private rowNumberContainer = style({
+    textAlign: "right",
+    paddingRight: "13px"
   });
   private mainContainer = style({
     width: "auto",
     display: "inline-block",
     margin: "20px",
     color: "black"
+  });
+  private canvasStyle = style({
+    border: "solid black 1px",
+    borderTop: "none"
   });
 
   public constructor(props: IChordPropsModel) {
@@ -44,20 +56,24 @@ export class ChordBlockComponent extends React.Component<
   public render() {
     const { name } = this.props;
     return (
-      <div>
-        <div className={this.mainContainer}>
-          <div className={this.accordDescription}>
-            <div className={this.descriptionElement}>{name}</div>
-            <div className={this.descriptionElement}>
-              {this.state.minRow ? this.state.minRow : 1}
-            </div>
+      <div className={this.mainContainer}>
+        <div className={this.accordDescription}>
+          <div className={this.descriptionElement}>{name}</div>
+          <div
+            className={classes(
+              this.descriptionElement,
+              this.rowNumberContainer
+            )}
+          >
+            {this.state.minRow ? this.state.minRow : 1}
           </div>
-          <canvas
-            id={this.props.id}
-            width={this.state.canvasWidth}
-            height={this.state.canvasHeight}
-          />
         </div>
+        <canvas
+          className={this.canvasStyle}
+          id={this.props.id}
+          width={this.state.canvasWidth}
+          height={this.state.canvasHeight}
+        />
       </div>
     );
   }
