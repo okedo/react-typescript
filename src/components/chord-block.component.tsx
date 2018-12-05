@@ -98,13 +98,15 @@ export class ChordBlockComponent extends React.Component<
     }
   }
 
-  private drawChord() {
-    const stringHeight = 20;
-    let currentStringHigth = 20;
+  private drawChord(): void {
+    const stringHeight: number = 20;
+    let currentStringHigth: number = 20;
+    const pressedStringRows: number[] = [];
     this.drawBasis();
     for (const stringG in this.props.structure.strings) {
       if (this.props.structure.strings.hasOwnProperty(stringG)) {
         this.props.structure.strings[stringG].forEach((element: number) => {
+          pressedStringRows.push(element);
           this.drawCircle(
             5,
             "black",
@@ -116,6 +118,10 @@ export class ChordBlockComponent extends React.Component<
         currentStringHigth += stringHeight;
       }
     }
+    const minRow: number = Math.min.apply(null, pressedStringRows);
+    if (pressedStringRows.filter(el => el === minRow).length === 6) {
+      this.drawBare(minRow);
+    }
   }
 
   private findBorders(): void {
@@ -124,12 +130,12 @@ export class ChordBlockComponent extends React.Component<
     for (const stringG in this.props.structure.strings) {
       if (this.props.structure.strings.hasOwnProperty(stringG)) {
         max =
-          Math.max(this.props.structure.strings[stringG]) > max
-            ? Math.max(this.props.structure.strings[stringG])
+          Math.max.apply(null, this.props.structure.strings[stringG]) > max
+            ? Math.max.apply(null, this.props.structure.strings[stringG])
             : max;
         min =
-          Math.min(this.props.structure.strings[stringG]) < min
-            ? Math.min(this.props.structure.strings[stringG])
+          Math.min.apply(null, this.props.structure.strings[stringG]) < min
+            ? Math.min.apply(null, this.props.structure.strings[stringG])
             : min;
       }
     }
@@ -142,7 +148,7 @@ export class ChordBlockComponent extends React.Component<
   }
 
   private calculateCanvasSize(): void {
-    const tempWidth = (this.state.maxRow - this.state.minRow) * 30;
+    const tempWidth = (this.state.maxRow - this.state.minRow + 1) * 30;
     this.setState({ canvasWidth: tempWidth });
   }
 
@@ -169,7 +175,8 @@ export class ChordBlockComponent extends React.Component<
     xStart: number,
     yStart: number,
     xEnd: number,
-    yEnd: number
+    yEnd: number,
+    lineWidth?: number
   ): void {
     const ctx = this.state.ctx;
     if (ctx) {
@@ -177,7 +184,19 @@ export class ChordBlockComponent extends React.Component<
       ctx.beginPath();
       ctx.moveTo(xStart, yStart);
       ctx.lineTo(xEnd, yEnd);
+      ctx.lineWidth = lineWidth ? lineWidth : 1;
       ctx.stroke();
     }
+  }
+
+  private drawBare(row: number) {
+    this.drawALine(
+      "black",
+      this.calculateElementHorizontalPosition(row),
+      5,
+      this.calculateElementHorizontalPosition(row),
+      this.state.canvasHeight - 5,
+      15
+    );
   }
 }
