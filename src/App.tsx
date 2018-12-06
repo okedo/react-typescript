@@ -1,20 +1,42 @@
 import * as React from "react";
-import "./App.css";
+import { connect } from "react-redux";
+import { style } from "typestyle";
+import { ChordBlockComponent } from "./components/chord-block.component";
+import { IBasePageProps } from "./models/base-page.props.model";
+import { IBasePageState } from "./models/base-page.state.model";
+import { IChordPropsModel } from "./models/chord-block.props.model";
 
+class App extends React.Component<IBasePageProps, IBasePageState> {
+  constructor(props: IBasePageProps) {
+    super(props);
+    this.state = {
+      baseText: ""
+    };
+  }
 
-class App extends React.Component {
   public render() {
+    const { text, chords } = this.props;
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+      <div className={generalStyle}>
+        {text ? text : "no data"}
+        {chords.map((chord: IChordPropsModel, index: number) => (
+          <ChordBlockComponent
+            id={chord.id}
+            key={index}
+            name={chord.name}
+            startString={chord.startString}
+            structure={chord.structure}
+          />
+        ))}
       </div>
     );
   }
 }
+const generalStyle = style({ color: "red" });
 
-export default App;
+const mapStateToProps = (store: any) => ({
+  text: store.pageReducer.text,
+  chords: store.pageReducer.chords
+});
+
+export default connect(mapStateToProps)(App as any);
