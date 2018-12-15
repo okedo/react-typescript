@@ -1,5 +1,6 @@
-import { IChordListProps } from './../models/chord-list.props.model';
-const initialState: IChordListProps = {
+import { ADD_CHORD } from './../actions/add-chord.action';
+import { IAction } from './../models/action.model';
+const initialState = {
   chordList: [
     {
       id: "2",
@@ -38,9 +39,9 @@ const initialState: IChordListProps = {
       structure: {
         strings: {
           sixthString: [1],
-          fifthString: [1,3],
-          fourthString: [1,3],
-          thirdString: [1,2],
+          fifthString: [1, 3],
+          fourthString: [1, 3],
+          thirdString: [1, 2],
           secondStrind: [1],
           firstString: [1]
         }
@@ -50,6 +51,9 @@ const initialState: IChordListProps = {
   text: "song text"
 };
 
-export function chordListReducer(state = initialState) {
-  return state;
+export function chordListReducer(state = initialState, action: IAction) {
+  switch (action.type) {
+    case ADD_CHORD: return { ...state, chordList: action.payload };
+    default: return state;
+  }
 }

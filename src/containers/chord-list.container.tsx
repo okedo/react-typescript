@@ -1,6 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { style } from "typestyle";
+import { addChord } from './../actions/add-chord.action';
+import { AddChordBlockComponent } from "./../components/add-chord-block.component";
 import { ChordBlockComponent } from "./../components/chord-block.component";
 import { IChordPropsModel } from "./../models/chord-block.props.model";
 import { IChordListProps } from "./../models/chord-list.props.model";
@@ -21,6 +23,7 @@ class ChordList extends React.Component<IChordListProps> {
             structure={chord.structure}
           />
         ))}
+        <AddChordBlockComponent chordList={this.props.chordList} addChord={this.props.addChord} />
       </div>
     );
   }
@@ -31,4 +34,8 @@ const mapStateToProps = (store: any) => ({
   text: store.chordListReducer.text
 });
 
-export default connect(mapStateToProps)(ChordList as any);
+const mapDispatchToProps = {
+  addChord
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChordList as any);
