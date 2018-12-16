@@ -13,20 +13,24 @@ class ChordList extends React.Component<IChordListProps> {
     const { text, chordList } = this.props;
     return (
       <div>
-        <div className={this.generalStyle}>{text}</div>
-        {chordList.map((chord: IChordPropsModel, index: number) => (
-          <ChordBlockComponent
-            id={chord.id}
-            key={index}
-            name={chord.name}
-            startString={chord.startString}
-            structure={chord.structure}
-          />
-        ))}
-        <AddChordBlockComponent
-          chordList={this.props.chordList}
-          basicChords={this.props.basicChords}
-          addChord={this.props.addChord} />
+        <div className={this.generalStyle}>
+          {text}
+        </div>
+        <div>
+          {chordList.map((chord: IChordPropsModel, index: number) => (
+            <ChordBlockComponent
+              id={chord.id}
+              key={index}
+              name={chord.name}
+              startString={chord.startString}
+              structure={chord.structure}
+            />
+          ))}
+          <AddChordBlockComponent
+            chordList={this.props.chordList}
+            basicChords={this.props.basicChords}
+            addChord={this.props.addChord} />
+        </div>
       </div>
     );
   }

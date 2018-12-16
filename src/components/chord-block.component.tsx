@@ -7,29 +7,29 @@ export class ChordBlockComponent extends React.Component<
   IChordPropsModel,
   IChordStateModel
 > {
-  private accordDescription = style({
+  private readonly accordDescription = style({
     display: "flex",
     justifyContent: "space-between",
     border: "solid black 1px",
     borderBottom: "none",
     fontSize: "14px"
   });
-  private descriptionElement = style({
+  private readonly descriptionElement = style({
     width: "50%",
     paddingTop: "2px",
     paddingLeft: "5px"
   });
-  private rowNumberContainer = style({
+  private readonly rowNumberContainer = style({
     textAlign: "right",
     paddingRight: "13px"
   });
-  private mainContainer = style({
+  private readonly mainContainer = style({
     width: "auto",
     display: "inline-block",
     margin: "20px",
     color: "black"
   });
-  private canvasStyle = style({
+  private readonly canvasStyle = style({
     border: "solid black 1px",
     borderTop: "none"
   });
