@@ -23,7 +23,10 @@ class ChordList extends React.Component<IChordListProps> {
             structure={chord.structure}
           />
         ))}
-        <AddChordBlockComponent chordList={this.props.chordList} addChord={this.props.addChord} />
+        <AddChordBlockComponent
+          chordList={this.props.chordList}
+          basicChords={this.props.basicChords}
+          addChord={this.props.addChord} />
       </div>
     );
   }
@@ -31,6 +34,7 @@ class ChordList extends React.Component<IChordListProps> {
 
 const mapStateToProps = (store: any) => ({
   chordList: store.chordListReducer.chordList,
+  basicChords: store.chordListReducer.basicChords,
   text: store.chordListReducer.text
 });
 
