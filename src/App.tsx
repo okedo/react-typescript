@@ -14,13 +14,8 @@ class App extends React.Component<IBasePageProps, IBasePageState> {
   }
 
   public render() {
-    const { text, chordLists } = this.props;
     return (
       <div className={generalStyle}>
-        {text ? text : "no data"}
-        {chordLists
-          ? chordLists.map((el, key) => <div key={key}>{el}</div>)
-          : "no data"}
         <ChordList />
       </div>
     );

@@ -5,7 +5,7 @@ import { basicChords } from "./basic-chords.constant";
 const initialState = {
   chordList: [],
   basicChords: [...basicChords],
-  text: "song text"
+  text: ""
 };
 
 export function chordListReducer(state = initialState, action: IAction) {
