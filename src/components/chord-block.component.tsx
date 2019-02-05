@@ -70,7 +70,7 @@ export class ChordBlockComponent extends React.Component<
         </div>
         <canvas
           className={this.canvasStyle}
-          id={this.props.id}
+          id={this.props.templateId}
           width={this.state.canvasWidth}
           height={this.state.canvasHeight}
         />
@@ -79,7 +79,7 @@ export class ChordBlockComponent extends React.Component<
   }
 
   private initCanvas() {
-    const canvasRef: any = document.getElementById(this.props.id);
+    const canvasRef: any = document.getElementById(this.props.templateId);
     const renderingContext = canvasRef ? canvasRef.getContext("2d") : null;
     this.setState({ canvas: canvasRef, ctx: renderingContext });
   }

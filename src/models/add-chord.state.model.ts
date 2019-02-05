@@ -1,4 +1,5 @@
+import { IChordPropsModel } from "./chord-block.props.model";
 export interface IAddChordState {
-  selectedChord: string;
+  selectedChord: IChordPropsModel;
   collapsedList: boolean;
 }

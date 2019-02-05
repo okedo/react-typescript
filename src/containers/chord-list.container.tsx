@@ -2,35 +2,35 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { style } from "typestyle";
 import { addChord } from "./../actions/add-chord.action";
-import { makeIdEnding } from "./../actions/id-ending-creator";
+import { getChord } from "./../actions/upload-chords.action";
 import { AddChordBlockComponent } from "./../components/add-chord-block.component";
 import { ChordBlockComponent } from "./../components/chord-block.component";
 import { IChordPropsModel } from "./../models/chord-block.props.model";
 import { IChordListProps } from "./../models/chord-list.props.model";
-import { basicChords } from "./../reducers/basic-chords.constant";
 
 class ChordList extends React.Component<IChordListProps> {
   private generalStyle = style({ color: "red" });
-  public generateCanvasId(id: string) {
-    return `canvas-${id}-${new Date().getMilliseconds}-${makeIdEnding()}`;
+
+  public componentDidMount() {
+    this.getChordList(this.props.chordList);
   }
+
   public render() {
     const { text, chordList } = this.props;
     return (
       <div>
         <div className={this.generalStyle}>{text}</div>
         <div>
-          {this.fillchordList(chordList).map(
-            (chord: IChordPropsModel, index: number) => (
-              <ChordBlockComponent
-                id={this.generateCanvasId(chord.id)}
-                key={index}
-                name={chord.name}
-                startString={chord.startString}
-                structure={chord.structure}
-              />
-            )
-          )}
+          {chordList.map((chord: IChordPropsModel, index: number) => (
+            <ChordBlockComponent
+              id={chord.id}
+              templateId={chord.templateId}
+              key={index}
+              name={chord.name}
+              startString={chord.startString}
+              structure={chord.structure}
+            />
+          ))}
           <AddChordBlockComponent
             chordList={this.props.chordList}
             basicChords={this.props.basicChords}
@@ -41,16 +41,9 @@ class ChordList extends React.Component<IChordListProps> {
     );
   }
 
-  private fillchordList = (chords: string[]) => {
-    const parsedChords: IChordPropsModel[] = [];
-    chords.map(chordName => {
-      const tempChord = basicChords.find(el => el.name === chordName);
-      if (tempChord) {
-        parsedChords.push(tempChord);
-      }
-    });
-    return parsedChords;
-  };
+  public getChordList(chordlist: IChordPropsModel[]) {
+    this.props.onGetChord(chordlist);
+  }
 }
 
 const mapStateToProps = (store: any) => ({
@@ -59,8 +52,18 @@ const mapStateToProps = (store: any) => ({
   text: store.chordListReducer.text
 });
 
-const mapDispatchToProps = {
-  addChord
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onGetChord: (chordlist: string[]) => {
+      dispatch(getChord(chordlist));
+    },
+    addChord: (
+      chordList: IChordPropsModel[],
+      selectedChord: IChordPropsModel
+    ) => {
+      dispatch(addChord(chordList, selectedChord));
+    }
+  };
 };
 
 export default connect(

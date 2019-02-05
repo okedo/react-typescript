@@ -5,4 +5,5 @@ export interface IChordPropsModel {
   name: string;
   startString: number;
   structure: IChordStructure;
+  templateId: string;
 }

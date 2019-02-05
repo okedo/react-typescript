@@ -1,4 +1,8 @@
-export function makeIdEnding() {
+export const generateCanvasId = (id: string) => {
+  return `canvas-${id}-${new Date().getMilliseconds()}-${makeIdEnding()}`;
+};
+
+function makeIdEnding() {
   let text = "-";
   const possible =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

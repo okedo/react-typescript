@@ -165,7 +165,7 @@ export const basicChords = [
     }
   },
   {
-    id: "11",
+    id: "12",
     name: "Em",
     startString: 1,
     structure: {
@@ -180,7 +180,7 @@ export const basicChords = [
     }
   },
   {
-    id: "12",
+    id: "13",
     name: "G",
     startString: 1,
     structure: {
@@ -195,7 +195,7 @@ export const basicChords = [
     }
   },
   {
-    id: "13",
+    id: "14",
     name: "G7",
     startString: 1,
     structure: {
@@ -210,7 +210,7 @@ export const basicChords = [
     }
   },
   {
-    id: "14",
+    id: "15",
     name: "Gm",
     startString: 2,
     structure: {
@@ -225,7 +225,7 @@ export const basicChords = [
     }
   },
   {
-    id: "15",
+    id: "16",
     name: "A",
     startString: 1,
     structure: {
@@ -240,7 +240,7 @@ export const basicChords = [
     }
   },
   {
-    id: "16",
+    id: "17",
     name: "A7",
     startString: 1,
     structure: {
@@ -255,7 +255,7 @@ export const basicChords = [
     }
   },
   {
-    id: "17",
+    id: "18",
     name: "Am",
     startString: 1,
     structure: {
@@ -270,7 +270,7 @@ export const basicChords = [
     }
   },
   {
-    id: "18",
+    id: "19",
     name: "B",
     startString: 2,
     structure: {
@@ -285,7 +285,7 @@ export const basicChords = [
     }
   },
   {
-    id: "19",
+    id: "20",
     name: "Bm",
     startString: 2,
     structure: {
@@ -300,7 +300,7 @@ export const basicChords = [
     }
   },
   {
-    id: "20",
+    id: "21",
     name: "B7",
     startString: 1,
     structure: {
