@@ -1,11 +1,10 @@
 import { ADD_CHORD } from "./../actions/add-chord.action";
-import { GET_CHORD_SUCCESS } from "./../actions/upload-chords.action";
+import { GET_CHORD_SUCCESS } from "./../actions/load-chords.action";
 import { IAction } from "./../models/action.model";
 import { basicChords } from "./basic-chords.constant";
 const initialState = {
   chordList: [],
-  basicChords: [...basicChords],
-  text: ""
+  basicChords: [...basicChords]
 };
 
 export function chordListReducer(state = initialState, action: IAction) {

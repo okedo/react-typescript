@@ -1,5 +1,5 @@
-import { IChordPropsModel } from "./../models/chord-block.props.model";
-import { basicChords } from "./../reducers/basic-chords.constant";
+import { IChordPropsModel } from "../models/chord-block.props.model";
+import { basicChords } from "../reducers/basic-chords.constant";
 import { generateCanvasId } from "./id-generator";
 export const getChord = (chordlist: string[]) => {
   return (dispatch: any) => {

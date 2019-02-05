@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { style } from "typestyle";
 import { addChord } from "./../actions/add-chord.action";
-import { getChord } from "./../actions/upload-chords.action";
+import { getChord } from "./../actions/load-chords.action";
 import { AddChordBlockComponent } from "./../components/add-chord-block.component";
 import { ChordBlockComponent } from "./../components/chord-block.component";
 import { IChordPropsModel } from "./../models/chord-block.props.model";
