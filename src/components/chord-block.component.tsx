@@ -142,25 +142,24 @@ export class ChordBlockComponent extends React.Component<
 
   private findBorders(): void {
     let max = 1;
-    let min = 12;
     for (const stringG in this.props.structure.strings) {
       if (this.props.structure.strings.hasOwnProperty(stringG)) {
         max =
           Math.max.apply(null, this.props.structure.strings[stringG]) > max
             ? Math.max.apply(null, this.props.structure.strings[stringG])
             : max;
-        min =
-          Math.min.apply(null, this.props.structure.strings[stringG]) < min
-            ? Math.min.apply(null, this.props.structure.strings[stringG])
-            : min;
       }
     }
-    this.setState({ maxRow: max, minRow: min });
+
+    max = max - this.props.startString < 2 ? max + 1 : max;
+
+    this.setState({ maxRow: max, minRow: this.props.startString });
   }
 
   private calculateElementHorizontalPosition(element: number): number {
+    const elementPos = element - this.props.startString;
     const rowWidth = 30;
-    return this.state.canvasWidth - element * rowWidth + rowWidth * 0.5;
+    return this.state.canvasWidth - elementPos * rowWidth - rowWidth * 0.5;
   }
 
   private calculateCanvasSize(): void {

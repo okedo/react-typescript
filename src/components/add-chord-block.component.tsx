@@ -59,7 +59,7 @@ export class AddChordBlockComponent extends React.Component<
         <div onClick={() => this.toggleListState()}>
           {this.state.collapsedList ? (
             <div className={this.listElementStyle}>
-              {this.state.selectedChord.name}
+              {this.state.selectedChord}
             </div>
           ) : (
             <div className={this.listStyle}>
@@ -67,7 +67,7 @@ export class AddChordBlockComponent extends React.Component<
                 return (
                   <div
                     className={this.listElementStyle}
-                    onClick={() => this.handleClick(el)}
+                    onClick={() => this.handleClick(el.name)}
                     key={el.id}
                   >
                     {el.name}
@@ -89,7 +89,7 @@ export class AddChordBlockComponent extends React.Component<
     );
   }
 
-  private handleClick(el: IChordPropsModel): void {
+  private handleClick(el: string): void {
     this.setState({ selectedChord: el });
   }
 
