@@ -2,6 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { style } from "typestyle";
 import { getSong } from "./actions/load-song.action";
+import { saveSong } from "./actions/save-song.action";
 import { SongText } from "./components/song.component";
 import ChordList from "./containers/chord-list.container";
 import { IBasePageProps } from "./models/base-page.props.model";
@@ -28,6 +29,15 @@ class App extends React.Component<IBasePageProps, IBasePageState> {
       <div className={generalStyle}>
         <ChordList />
         <SongText text={this.props.text} title={this.props.title} />
+        <button
+          onClick={this.props.saveSong(
+            this.props.chords,
+            this.props.title,
+            this.props.text
+          )}
+        >
+          Save song
+        </button>
       </div>
     );
   }
@@ -44,6 +54,9 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     onGetSong: () => {
       dispatch(getSong());
+    },
+    saveSong: (chords: string[], title: string, text: string) => {
+      dispatch(saveSong(chords, title, text));
     }
   };
 };
